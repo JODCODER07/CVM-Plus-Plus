@@ -1,0 +1,57 @@
+// CVM++ Object-Oriented Programming Test Suite
+
+print "--- 1. Class definition and instantiation ---";
+class Person {
+  init(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  sayHello() {
+    print "Hello, my name is:";
+    print this.name;
+    print "Age:";
+    print this.age;
+  }
+
+  growOlder(years) {
+    this.age = this.age + years;
+  }
+}
+
+var alice = Person("Alice", 25);
+print alice; // Should print "Person instance"
+alice.sayHello();
+
+print "";
+print "--- 2. Field getting and setting ---";
+print alice.name;
+print alice.age;
+alice.age = 30;
+print alice.age;
+
+print "";
+print "--- 3. Bound methods and local scope closure capture of this ---";
+var greet = alice.sayHello;
+greet(); // Should print Alice and age 30
+
+alice.growOlder(5);
+greet(); // Should print Alice and age 35
+
+print "";
+print "--- 4. Complex constructor behavior ---";
+class Counter {
+  init(start) {
+    this.count = start;
+  }
+
+  increment() {
+    this.count = this.count + 1;
+    return this.count;
+  }
+}
+
+var c = Counter(10);
+print c.increment(); // 11
+print c.increment(); // 12
+print c.increment(); // 13

@@ -1,0 +1,15 @@
+var list = [10, 20, 30];
+print "Initial list:";
+print list;
+print "Element at index 1:";
+print list[1];
+
+list[1] = 99;
+print "After list[1] = 99:";
+print list;
+
+var mixed = ["hello", true, [1, 2]];
+print "Mixed types list:";
+print mixed;
+print "Nested index mixed[2][0]:";
+print mixed[2][0];

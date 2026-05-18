@@ -1,0 +1,53 @@
+// CVM++ Array & String Rich Standard Methods Test
+print "--- 1. Testing Array slice ---";
+var list = [10, 20, 30, 40, 50];
+print "Original list:";
+print list;
+print "list.slice(1, 4):";
+print list.slice(1, 4);
+print "list.slice(2):";
+print list.slice(2);
+print "list.slice(-3, -1):";
+print list.slice(-3, -1);
+
+print "";
+print "--- 2. Testing Array indexOf ---";
+print "Index of 30:";
+print list.indexOf(30);
+print "Index of 100:";
+print list.indexOf(100);
+
+print "";
+print "--- 3. Testing Array join ---";
+print "list.join(' - '):";
+print list.join(" - ");
+print "list.join():";
+print list.join();
+
+print "";
+print "--- 4. Testing String split ---";
+var str = "Google_DeepMind_Antigravity";
+print "String:";
+print str;
+print "str.split('_'):";
+print str.split("_");
+print "str.split(''):";
+print str.split("");
+
+print "";
+print "--- 5. Testing String substring ---";
+print "str.substring(7, 15):";
+print str.substring(7, 15);
+print "str.substring(16):";
+print str.substring(16);
+
+print "";
+print "--- 6. Testing String find & contains ---";
+print "Index of 'Antigravity':";
+print str.find("Antigravity");
+print "Index of 'Unknown':";
+print str.find("Unknown");
+print "Contains 'DeepMind':";
+print str.contains("DeepMind");
+print "Contains 'OpenAI':";
+print str.contains("OpenAI");

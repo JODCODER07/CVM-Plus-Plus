@@ -1,0 +1,51 @@
+// ── CVM++ Sockets Server Script ──
+
+print "[Server] Creating TCP socket...";
+var server = socket_create();
+if (server < 0) {
+    print "[Server] Error creating socket!";
+    exit(1);
+}
+
+print "[Server] Binding socket to 127.0.0.1:9095...";
+if (!socket_bind(server, "127.0.0.1", 9095)) {
+    print "[Server] Error binding socket!";
+    socket_close(server);
+    exit(1);
+}
+
+print "[Server] Listening for connections (backlog=5)...";
+if (!socket_listen(server, 5)) {
+    print "[Server] Error listening!";
+    socket_close(server);
+    exit(1);
+}
+
+print "[Server] Waiting for a client connection (blocking accept)...";
+var client = socket_accept(server);
+if (client < 0) {
+    print "[Server] Error accepting connection!";
+    socket_close(server);
+    exit(1);
+}
+print "[Server] Accepted client connection: handle " + str(client);
+
+print "[Server] Receiving request message...";
+var request = socket_recv(client, 1024);
+print "[Server] Received: " + request;
+
+// Send a JSON response back to the client
+var responseObj = {
+    "status": "success",
+    "message": "Hello from CVM++ TCP Server!",
+    "received_length": request.length()
+};
+var jsonResponse = json_stringify(responseObj);
+print "[Server] Sending JSON response: " + jsonResponse;
+
+socket_send(client, jsonResponse);
+
+print "[Server] Closing client and server sockets...";
+socket_close(client);
+socket_close(server);
+print "[Server] Done!";

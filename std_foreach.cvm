@@ -1,0 +1,77 @@
+// CVM++ Phase 21: For-Each Loop Test Suite
+
+print "--- 1. Iterating over an array ---";
+var nums = [10, 20, 30, 40, 50];
+for (n in nums) {
+    print n;
+}
+
+print "";
+print "--- 2. For-each with computation inside body ---";
+var total = 0;
+for (n in nums) {
+    total = total + n;
+}
+print "Sum of array:";
+print total;
+
+print "";
+print "--- 3. For-each over string array ---";
+var fruits = ["apple", "banana", "cherry", "mango"];
+for (fruit in fruits) {
+    print "Fruit: " + fruit;
+}
+
+print "";
+print "--- 4. For-each over map keys ---";
+var config = {"host": "localhost", "port": 8080, "debug": true};
+print "Map keys:";
+for (k in config) {
+    print k;
+}
+
+print "";
+print "--- 5. Nested for-each ---";
+var matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+for (row in matrix) {
+    for (cell in row) {
+        print cell;
+    }
+}
+
+print "";
+print "--- 6. For-each building a new collection ---";
+var source = [3, 1, 4, 1, 5, 9];
+var doubled = [];
+for (x in source) {
+    doubled.push(x * 2);
+}
+print "Doubled:";
+print doubled;
+
+print "";
+print "--- 7. For-each with function calls ---";
+import "mathlib";
+var values = [1, 5, 10];
+print "Factorials:";
+for (v in values) {
+    print factorial(v);
+}
+
+print "";
+print "--- 8. For-each with try-catch ---";
+var risky = [10, 0, 5];
+for (denom in risky) {
+    try {
+        if (denom == 0) {
+            throw "Cannot divide by zero!";
+        }
+        print 100 / denom;
+    } catch (err) {
+        print "Caught:";
+        print err;
+    }
+}
+
+print "";
+print "All for-each tests passed!";

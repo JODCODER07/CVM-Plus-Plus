@@ -1,0 +1,44 @@
+fun makeCounter() {
+    var count = 0;
+    fun countFn() {
+        count = count + 1;
+        return count;
+    }
+    return countFn;
+}
+
+var counter = makeCounter();
+print counter();
+print counter();
+print counter();
+
+fun outer() {
+    var x = "outer variable closure!";
+    fun inner() {
+        print x;
+    }
+    return inner;
+}
+var closure = outer();
+closure();
+
+print "--- Testing Shared Variable Closures + Arrays ---";
+
+fun testShared() {
+    var x = "initial";
+    fun setX(val) {
+        x = val;
+    }
+    fun getX() {
+        return x;
+    }
+    return [setX, getX];
+}
+
+var pair = testShared();
+var setter = pair[0];
+var getter = pair[1];
+
+print getter();
+setter("updated value!");
+print getter();

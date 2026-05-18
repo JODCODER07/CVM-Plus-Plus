@@ -1,0 +1,30 @@
+# CVM++ Git Ignore
+
+# Executables
+*.exe
+*.o
+*.obj
+*.a
+*.lib
+
+# CVM++ Bytecode
+*.cvmc
+
+# CMake Build files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+build/
+bin/
+
+# Temporary / test files
+test_io.txt
+temp_*
+
+# OS / Editor files
+.vscode/
+.vs/
+.idea/
+Thumbs.db
+Desktop.ini

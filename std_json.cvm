@@ -1,0 +1,67 @@
+// ── CVM++ JSON Standard Library Verification Suite ──
+
+print "=== Testing JSON Parser ===";
+
+// Simple values
+var rawNull = "null";
+var parsedNull = json_parse(rawNull);
+print "Parsed Null (expects 0):";
+print parsedNull;
+
+var rawBool = "true";
+var parsedBool = json_parse(rawBool);
+print "Parsed Bool (expects true):";
+print parsedBool;
+
+var rawNum = "-12345.0";
+var parsedNum = json_parse(rawNum);
+print "Parsed Number (expects -12345):";
+print parsedNum;
+
+// String parsing (single quotes in JSON source)
+var rawStr = "'Hello, CVM++!'";
+var parsedStr = json_parse(rawStr);
+print "Parsed String (expects: Hello, CVM++!):";
+print parsedStr;
+
+// Complex nested structure (directly using single quotes in single-line JSON string)
+var jsonInput = "{ 'name': 'CVM++', 'version': 1.0, 'features': ['GC', 'OOP', 'Sockets', 'JSON'], 'config': { 'active': true, 'workers': 4.0 } }";
+
+var data = json_parse(jsonInput);
+print "Parsed Object Structure:";
+print data;
+
+print "Accessing individual fields:";
+print "Name: " + data["name"];
+print "Version: " + str(data["version"]);
+print "First Feature: " + data["features"][0];
+print "Active Config: " + str(data["config"]["active"]);
+
+print "";
+print "=== Testing JSON Serializer ===";
+var serialized = json_stringify(data);
+print "Serialized JSON string:";
+print serialized;
+
+// Try to parse back the serialized output
+var data2 = json_parse(serialized);
+print "Parsing back serialized output - matches?:";
+print data2["features"][1] == "OOP"; // expects true
+
+print "";
+print "=== Testing JSON Cycle Detection ===";
+var arr = [1, 2, 3];
+// Make circular reference
+arr.push(arr);
+
+try {
+    print "Trying to stringify circular array (should fail gracefully)...";
+    var result = json_stringify(arr);
+    print "Oops! Did not raise circular error. Result: " + result;
+} catch (e) {
+    print "Successfully caught circular reference error:";
+    print e;
+}
+
+print "";
+print "=== JSON Verification Complete ===";

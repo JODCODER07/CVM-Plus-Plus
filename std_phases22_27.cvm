@@ -1,0 +1,87 @@
+// CVM++ Phases 22-27 Comprehensive Test Suite
+
+print "=== Phase 22: Break & Continue ===";
+print "-- break: find first even in list --";
+var nums = [1, 3, 5, 6, 9, 11];
+var found = -1;
+var i = 0;
+while (i < 6) {
+    var n = nums[i];
+    var rem = n - floor(n / 2) * 2;
+    if (rem == 0) {
+        found = n;
+        break;
+    }
+    i = i + 1;
+}
+print found;
+
+print "-- continue: skip multiples of 3 --";
+var j = 0;
+while (j < 10) {
+    j = j + 1;
+    var rem3 = j - floor(j / 3) * 3;
+    if (rem3 == 0) { continue; }
+    print j;
+}
+
+print "";
+print "=== Phase 23: Ternary Operator ===";
+var age = 20;
+print age >= 18 ? "adult" : "minor";
+var x = 0;
+print x > 0 ? "positive" : (x < 0 ? "negative" : "zero");
+var arr = [1, 2, 3];
+print "Length: " + str(arr.length() > 2 ? "long" : "short");
+
+print "";
+print "=== Phase 24: Variadic Functions ===";
+fun sum(...args) {
+    var total = 0;
+    for (n in args) { total = total + n; }
+    return total;
+}
+print sum(1, 2, 3);
+print sum(10, 20, 30, 40, 50);
+
+fun greet(prefix, ...names) {
+    for (name in names) {
+        print prefix + " " + name + "!";
+    }
+}
+greet("Hello", "Alice", "Bob", "Charlie");
+
+print "";
+print "=== Phase 25: typeof() ===";
+print typeof(42);
+print typeof("hello");
+print typeof(true);
+print typeof([1,2,3]);
+print typeof({"a": 1});
+print typeof(sum);
+
+print "";
+print "=== Phase 26: str() / num() / floor / ceil / round / min / max ===";
+print str(3.14);
+print str(true);
+print num("42");
+print num("3.14");
+print floor(3.9);
+print ceil(3.1);
+print round(3.5);
+print min(10, 20);
+print max(10, 20);
+
+print "";
+print "=== Phase 27: String Methods ===";
+var s = "  Hello, World!  ";
+print s.trim();
+print s.trim().upper();
+print s.trim().lower();
+print "hello world".replace("world", "CVM++");
+print "CVM++".repeat(3);
+print "Hello".startsWith("He");
+print "Hello".endsWith("lo");
+
+print "";
+print "All phases 22-27 complete!";

@@ -1,0 +1,40 @@
+// CVM++ Array Methods and Built-in Utilities Test Suite
+
+print "--- 1. Array length, push, and pop ---";
+var list = [10, 20, 30];
+print "Initial list:";
+print list;
+print "Initial length:";
+print list.length();
+
+print "Pushing 40...";
+list.push(40);
+print "New list:";
+print list;
+print "New length:";
+print list.length();
+
+print "Popping...";
+var popped = list.pop();
+print "Popped value:";
+print popped;
+print "List after pop:";
+print list;
+print "Length after pop:";
+print list.length();
+
+print "";
+print "--- 2. Array clearing ---";
+list.clear();
+print "List after clear:";
+print list;
+print "Length after clear:";
+print list.length();
+
+print "";
+print "--- 3. String length ---";
+var str = "Google DeepMind Antigravity";
+print "String:";
+print str;
+print "String length:";
+print str.length();

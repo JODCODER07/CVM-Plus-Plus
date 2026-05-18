@@ -1,0 +1,38 @@
+// GC Stress & Cyclic Reference Test for CVM++ Custom Mark & Sweep Collector
+
+class Node {
+    init(value) {
+        this.value = value;
+        this.next = 0;
+    }
+}
+
+print "--- Starting GC Stress Test ---";
+
+// 1. Create a cycle
+var first = Node(1);
+var second = Node(2);
+first.next = second;
+second.next = first; // cyclic reference!
+
+print "Cyclic references created: first.next.value = " + str(first.next.value);
+print "second.next.value = " + str(second.next.value);
+
+// 2. Stress Allocation (allocating 200,000 objects to force GC triggers)
+print "Allocating 200,000 objects to stress test GC...";
+var i = 0;
+var count = 0;
+while (i < 200000) {
+    var temp = Node(i);
+    count = count + 1;
+    if (count == 5000) {
+        var a = Node(i + 1);
+        var b = Node(i + 2);
+        a.next = b;
+        b.next = a; // new garbage cycle
+        count = 0;
+    }
+    i = i + 1;
+}
+
+print "GC Stress Test Completed Successfully with no crashes!";

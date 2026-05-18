@@ -1,0 +1,38 @@
+// ── CVM++ Sockets Client Script ──
+
+print "[Client] Creating TCP socket...";
+var client = socket_create();
+if (client < 0) {
+    print "[Client] Error creating socket!";
+    exit(1);
+}
+
+print "[Client] Connecting to server at 127.0.0.1:9095...";
+// Sleep/Wait shortly using loop to give server process a tiny moment to bind
+var i = 0;
+while (i < 1000000) { i = i + 1; }
+
+if (!socket_connect(client, "127.0.0.1", 9095)) {
+    print "[Client] Error connecting to server! Make sure the server script is running.";
+    socket_close(client);
+    exit(1);
+}
+print "[Client] Connected successfully!";
+
+var requestMsg = "Hello Server, this is CVM++ Client!";
+print "[Client] Sending request: " + requestMsg;
+socket_send(client, requestMsg);
+
+print "[Client] Receiving response...";
+var responseStr = socket_recv(client, 1024);
+print "[Client] Received raw response: " + responseStr;
+
+print "[Client] Parsing JSON response...";
+var responseObj = json_parse(responseStr);
+print "[Client] Parsed Status: " + responseObj["status"];
+print "[Client] Parsed Message: " + responseObj["message"];
+print "[Client] Parsed Received Length: " + str(responseObj["received_length"]);
+
+print "[Client] Closing socket...";
+socket_close(client);
+print "[Client] Done!";

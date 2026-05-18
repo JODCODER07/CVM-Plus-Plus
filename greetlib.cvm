@@ -1,0 +1,22 @@
+// CVM++ Module: greetlib.cvm
+// A reusable greeting and formatting library
+
+fun greet(name) {
+    print "Hello, " + name + "!";
+}
+
+fun banner(title) {
+    print "=============================";
+    print "  " + title;
+    print "=============================";
+}
+
+fun repeat(msg, times) {
+    var i = 0;
+    while (i < times) {
+        print msg;
+        i = i + 1;
+    }
+}
+
+print "[greetlib] loaded.";

@@ -1,0 +1,7 @@
+var a = !true;
+var b = -10.5;
+print a;
+print b;
+var bad = "hello";
+var c = !bad;
+print c;

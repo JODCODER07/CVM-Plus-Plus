@@ -1,0 +1,64 @@
+// CVM++ Map / Dictionary Type & Literals Test Suite
+print "--- 1. Testing Map literals & printing ---";
+var dict = { "name": "Antigravity", "version": 2.0, "active": true };
+print "Map instance:";
+print dict;
+
+print "";
+print "--- 2. Testing Map lookup ---";
+print "dict['name']:";
+print dict["name"];
+print "dict['version']:";
+print dict["version"];
+
+print "";
+print "--- 3. Testing Map bracket assignment ---";
+print "Updating 'version' to 3.0...";
+dict["version"] = 3.0;
+print "Adding new key 'creator': 'Google DeepMind'...";
+dict["creator"] = "Google DeepMind";
+print "Modified map:";
+print dict;
+
+print "";
+print "--- 4. Testing Map length / size ---";
+print "dict.length():";
+print dict.length();
+print "dict.size():";
+print dict.size();
+
+print "";
+print "--- 5. Testing Map has ---";
+print "dict.has('creator') (should be true):";
+print dict.has("creator");
+print "dict.has('unknown') (should be false):";
+print dict.has("unknown");
+
+print "";
+print "--- 6. Testing Map keys & values ---";
+var keysList = dict.keys();
+var valsList = dict.values();
+print "Keys:";
+print keysList;
+print "Values:";
+print valsList;
+
+print "";
+print "--- 7. Testing Map remove ---";
+print "Removing 'active' key...";
+var removed = dict.remove("active");
+print "Removed successfully:";
+print removed;
+print "Map after removal:";
+print dict;
+print "dict.has('active') (should be false):";
+print dict.has("active");
+
+print "";
+print "--- 8. Testing Map clear ---";
+print "Clearing map...";
+dict.clear();
+print "Map after clear:";
+print dict;
+print "New length:";
+print dict.length();

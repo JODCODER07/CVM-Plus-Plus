@@ -1,0 +1,7 @@
+// Debug: for-each after import
+import "mathlib";
+var values = [1, 5, 10];
+for (v in values) {
+    print factorial(v);
+}
+print "done";

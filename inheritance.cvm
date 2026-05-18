@@ -1,0 +1,50 @@
+// CVM++ Class Inheritance and Super Test Suite
+
+class Doughnut {
+  cook() {
+    print "Fry until golden brown.";
+  }
+}
+
+class BostonCream < Doughnut {
+  cook() {
+    super.cook();
+    print "Pipe with custard and frost with chocolate.";
+  }
+}
+
+print "--- 1. Testing Doughnut ---";
+var d = Doughnut();
+d.cook();
+
+print "";
+print "--- 2. Testing BostonCream subclass cook() ---";
+var b = BostonCream();
+b.cook();
+
+print "";
+print "--- 3. Testing super class method override with arguments ---";
+class Parent {
+  init(val) {
+    this.value = val;
+  }
+  describe() {
+    print "Parent value:";
+    print this.value;
+  }
+}
+
+class Child < Parent {
+  init(val, extra) {
+    super.init(val);
+    this.extra = extra;
+  }
+  describe() {
+    super.describe();
+    print "Child extra:";
+    print this.extra;
+  }
+}
+
+var c = Child("Secret", 42);
+c.describe();

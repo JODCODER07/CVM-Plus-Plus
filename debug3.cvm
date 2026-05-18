@@ -1,0 +1,15 @@
+class Doughnut {
+  cook() {
+    print "Fry until golden brown.";
+  }
+}
+
+class BostonCream < Doughnut {
+  cook() {
+    super.cook();
+    print "Pipe with custard and frost with chocolate.";
+  }
+}
+
+print "Defining BostonCream...";
+print "Done.";

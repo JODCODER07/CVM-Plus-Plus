@@ -1,0 +1,22 @@
+// CVM++ Phases 28, 29, 30 Comprehensive Test Suite
+
+print "=== Phase 28: String Interpolation ===";
+var name = "Alice";
+var age = 30;
+print "Name: ${name}, Age: ${age}";
+print "Next year she will be ${age + 1}";
+var list = [1, 2, 3];
+print "List size is ${list.length()} and list is ${list}";
+
+print "";
+print "=== Phase 30: args() and exit() ===";
+var scriptArgs = args();
+print "Arguments received: " + str(scriptArgs.length());
+for (a in scriptArgs) {
+    print "- " + a;
+}
+
+print "";
+print "Calling exit(0) to terminate cleanly...";
+exit(0);
+print "THIS SHOULD NOT PRINT";

@@ -1,0 +1,53 @@
+// CVM++ std_imports.cvm
+// Phase 20: Module/Import System Test Suite
+
+print "--- 1. Importing mathlib and greetlib ---";
+import "mathlib";
+import "greetlib";
+
+print "";
+print "--- 2. Using mathlib globals and functions ---";
+print "PI =";
+print PI;
+print "E =";
+print E;
+print "factorial(10) =";
+print factorial(10);
+print "fibonacci(15) =";
+print fibonacci(15);
+print "circleArea(5) =";
+print circleArea(5);
+
+print "";
+print "--- 3. Using greetlib functions ---";
+greet("CVM++ Developer");
+banner("Module Import System");
+print "";
+print "Repeating message 3 times:";
+repeat("Hello!", 3);
+
+print "";
+print "--- 4. Testing duplicate import guard (mathlib imported twice) ---";
+import "mathlib";
+print "PI still accessible after re-import:";
+print PI;
+
+print "";
+print "--- 5. Importing a module and catching its error ---";
+try {
+    import "nonexistent_module";
+} catch (err) {
+    print "Caught import error (expected):";
+    print err;
+}
+
+print "";
+print "--- 6. Demonstrating cross-module interaction ---";
+print "fibonacci(circleArea(2)) approximately =";
+var area = circleArea(2);
+print area;
+print "fibonacci(12) =";
+print fibonacci(12);
+
+print "";
+print "All import tests passed!";

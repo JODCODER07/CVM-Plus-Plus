@@ -1,0 +1,84 @@
+// CVM++ Try-Catch Exception Handling & Stack Tracing Test Suite
+
+print "--- 1. Testing basic Try-Catch and Throw ---";
+try {
+    print "Inside try block, about to throw...";
+    throw "Oops! Something went wrong.";
+    print "This line should never be printed.";
+} catch (e) {
+    print "Caught exception successfully:";
+    print e;
+}
+
+print "";
+print "--- 2. Testing nested Try-Catch blocks ---";
+try {
+    try {
+        print "Inside inner try...";
+        throw "Inner exception";
+    } catch (innerErr) {
+        print "Caught inner exception:";
+        print innerErr;
+        print "Re-throwing a different error to outer try...";
+        throw "Outer exception";
+    }
+} catch (outerErr) {
+    print "Caught outer exception:";
+    print outerErr;
+}
+
+print "";
+print "--- 3. Testing Exception propagation across functions ---";
+fun levelThree() {
+    print "Level 3: About to throw...";
+    throw "Exception from Level 3!";
+}
+
+fun levelTwo() {
+    print "Level 2: Calling Level 3...";
+    levelThree();
+    print "Level 2: This should not execute.";
+}
+
+fun levelOne() {
+    print "Level 1: Calling Level 2...";
+    levelTwo();
+    print "Level 1: This should not execute.";
+}
+
+try {
+    levelOne();
+} catch (propagatedErr) {
+    print "Successfully caught propagated exception:";
+    print propagatedErr;
+}
+
+print "";
+print "--- 4. Testing Exception in Class Methods ---";
+class MathEngine {
+    divide(a, b) {
+        if (b == 0) {
+            throw "Division by zero is illegal!";
+        }
+        return a / b;
+    }
+}
+
+var engine = MathEngine();
+try {
+    print "Attempting 10 / 2...";
+    print engine.divide(10, 2);
+    print "Attempting 10 / 0...";
+    print engine.divide(10, 0);
+} catch (mathErr) {
+    print "Caught math exception:";
+    print mathErr;
+}
+
+print "";
+print "--- 5. Testing Unhandled VM Runtime Error (Undefined Variable) ---";
+fun crashSite() {
+    print nonExistentVar;
+}
+
+crashSite();
