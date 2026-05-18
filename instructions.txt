@@ -1,0 +1,83 @@
+========================================================================
+                 CVM++ COMPILER & VM RUNTIME INSTRUCTIONS
+========================================================================
+
+CVM++ is a high-performance, dynamic programming language engine featuring
+a custom Mark-and-Sweep Garbage Collector, TCP Sockets Networking, and a
+relaxed JSON parsing/serialization standard library.
+
+Follow these simple instructions to build, run, and test CVM++.
+
+------------------------------------------------------------------------
+1. HOW TO BUILD THE COMPILER & VM
+------------------------------------------------------------------------
+Make sure you have a C++17 compatible compiler installed (such as GCC/MinGW
+on Windows, Clang, or MSVC).
+
+To compile the production-ready optimized executable, run the following
+command from the project root directory:
+
+  g++ -O3 -std=c++17 -Iinclude src/main.cpp src/chunk.cpp src/value.cpp src/lexer.cpp src/ast.cpp src/parser.cpp src/compiler.cpp src/vm.cpp src/serializer.cpp -o cvm++.exe -lws2_32
+
+This produces the native binary "cvm++.exe" with standard optimization level 3.
+
+------------------------------------------------------------------------
+2. HOW TO RUN CVM++ SOURCE SCRIPTS (.cvm)
+------------------------------------------------------------------------
+To run any CVM++ source file directly through the virtual machine, pass
+the script path as an argument:
+
+  .\cvm++.exe script.cvm
+
+Example:
+  .\cvm++.exe oop.cvm
+  .\cvm++.exe gc_stress.cvm
+
+------------------------------------------------------------------------
+3. HOW TO COMPILE AND RUN BINARY BYTECODE (.cvmc)
+------------------------------------------------------------------------
+CVM++ allows compiling human-readable source scripts into compact, high-speed,
+and secure serialized binary bytecode chunks.
+
+A) To compile a .cvm script into binary bytecode (.cvmc):
+  .\cvm++.exe --compile script.cvm
+
+  (This compiles "script.cvm" and outputs "script.cvmc" in the same directory).
+
+B) To execute the compiled binary bytecode file (.cvmc):
+  .\cvm++.exe script.cvmc
+
+C) To disassemble the compiled binary bytecode to view compiler instructions:
+  .\cvm++.exe --disasm script.cvmc
+
+------------------------------------------------------------------------
+4. HOW TO RUN THE INTERACTIVE REPL
+------------------------------------------------------------------------
+CVM++ features an interactive Read-Eval-Print-Loop (REPL) shell. To launch
+the REPL, simply run the executable with no arguments:
+
+  .\cvm++.exe
+
+Type your expressions or statements and hit Enter to execute immediately.
+To exit the REPL, type "exit(0);" or close the window.
+
+------------------------------------------------------------------------
+5. HOW TO RUN THE ENTIRE VERIFICATION TEST SUITE
+------------------------------------------------------------------------
+CVM++ includes a comprehensive verification harness to run and validate all
+language phases and core standard libraries:
+
+  powershell -ExecutionPolicy Bypass -File verify_all.ps1
+
+This automatically executes:
+  - Array & String Method Suites
+  - Map / Dictionary Built-ins
+  - Exception Handling & Unwinding Tests
+  - Module Imports & Circular guards
+  - For-Each Loop Accumulators
+  - Ternaries, Break/Continue, and Variadics
+  - Reflection Operators
+  - Sockets & JSON Engines
+
+All tests should report "PASSED [OK]" and print a green success banner!
+========================================================================
